@@ -1,0 +1,34 @@
+{
+  "name": "@calipsa/camera-reports-to-csv",
+  "version": "1.0.0",
+  "description": "Convert camera reports to CSV",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"no test\"",
+    "lint": "tslint './src/**/*.ts'",
+    "build": "rm -rf dist && tsc",
+    "prepublishOnly": "npm run build",
+    "release": "np"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calipsa/camera-reports-to-csv"
+  },
+  "keywords": [
+    "camera",
+    "reports",
+    "convert",
+    "csv"
+  ],
+  "author": "Anton Veselev",
+  "license": "ISC",
+  "dependencies": {
+    "@calipsa/array-to-csv": "^1.0.1"
+  },
+  "devDependencies": {
+    "np": "^5.0.3",
+    "tslint": "^5.19.0",
+    "typescript": "^3.5.3"
+  }
+}
