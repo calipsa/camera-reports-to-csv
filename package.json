@@ -24,7 +24,7 @@
   "author": "Anton Veselev",
   "license": "ISC",
   "dependencies": {
-    "@calipsa/array-to-csv": "^1.0.1"
+    "@calipsa/array-to-csv": "^1.1.0"
   },
   "devDependencies": {
     "np": "^5.0.3",
