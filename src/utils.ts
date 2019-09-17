@@ -6,7 +6,7 @@ type AllowedNames<T, U> = FilterFlags<T, U>[keyof T]
 
 type SubType<T, U> = Pick<T, AllowedNames<T, U>>
 
-export const sumBy = <T extends {}>(arr: T[], prop: keyof SubType<T, number>) =>
+export const sumBy = <T extends {}>(arr: T[], prop: keyof SubType<T, number>): number =>
   arr.reduce((acc, item) => (item[prop] as any) + acc, 0)
 
 export const formatDate = (dateStr: any) =>

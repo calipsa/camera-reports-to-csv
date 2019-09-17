@@ -14,12 +14,20 @@ interface Item {
   total: number,
   processed: number,
   valid: number,
-  reduction: number,
   labeledTrue: number,
   labeledFalse: number,
 }
 
-function getTotal(data: Item[]): Item {
+interface ItemWithReduction extends Item {
+  reduction: number,
+}
+
+const getDataWithReduction = (data: Item): ItemWithReduction => ({
+  ...data,
+  reduction: 1 - data.valid / data.processed,
+})
+
+function getTotal(data: Item[]): ItemWithReduction {
   const valid = sumBy(data, 'valid')
   const processed = sumBy(data, 'processed')
   return {
@@ -86,6 +94,6 @@ const toCsv = arrayToCsv(columns)
 
 export = (data: Item[]) =>
   toCsv([
-    ...data,
+    ...data.map(getDataWithReduction),
     getTotal(data),
   ])
