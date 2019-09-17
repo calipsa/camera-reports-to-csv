@@ -23,7 +23,7 @@ function getTotal(data: Item[]): Item {
   const valid = sumBy(data, 'valid')
   const processed = sumBy(data, 'processed')
   return {
-    client: '',
+    client: 'TOTAL',
     site: '',
     name: '',
     createdAt: '',
