@@ -2,6 +2,7 @@ import arrayToCsv from '@calipsa/array-to-csv'
 
 import {
   sumBy,
+  formatNumber,
   formatDate,
 } from './utils'
 
@@ -79,6 +80,7 @@ const columns = [
   {
     key: 'reduction',
     label: 'Reduction',
+    transform: formatNumber,
   },
   {
     key: 'labeledTrue',
