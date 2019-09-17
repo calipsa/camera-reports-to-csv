@@ -11,8 +11,8 @@ export const sumBy = <T extends {}>(arr: T[], prop: keyof SubType<T, number>): n
 
 export const formatNumber = (num: number) =>
   Number.isNaN(num)
-    ? num.toString()
-    : ''
+    ? ''
+    : num.toString()
 
 export const formatDate = (dateStr: any) =>
   dateStr
