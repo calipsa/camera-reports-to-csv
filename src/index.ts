@@ -1,9 +1,41 @@
 import arrayToCsv from '@calipsa/array-to-csv'
 
-const formatDate = (dateStr: any) =>
-  dateStr
-    ? new Date(dateStr).toLocaleString()
-    : ''
+import {
+  sumBy,
+  formatDate,
+} from './utils'
+
+interface Item {
+  client: string,
+  site: string,
+  name: string,
+  createdAt: Date | string,
+  lastAlarmAt: Date | string,
+  total: number,
+  processed: number,
+  valid: number,
+  reduction: number,
+  labeledTrue: number,
+  labeledFalse: number,
+}
+
+function getTotal(data: Item[]): Item {
+  const valid = sumBy(data, 'valid')
+  const processed = sumBy(data, 'processed')
+  return {
+    client: '',
+    site: '',
+    name: '',
+    createdAt: '',
+    lastAlarmAt: '',
+    total: sumBy(data, 'total'),
+    processed,
+    valid,
+    reduction: 1 - valid / processed,
+    labeledTrue: sumBy(data, 'labeledTrue'),
+    labeledFalse: sumBy(data, 'labeledFalse'),
+  }
+}
 
 const columns = [
   {
@@ -19,6 +51,11 @@ const columns = [
     label: 'Name',
   },
   {
+    key: 'createdAt',
+    label: 'Created at',
+    transform: formatDate,
+  },
+  {
     key: 'lastAlarmAt',
     label: 'Last alarm',
     transform: formatDate,
@@ -29,8 +66,26 @@ const columns = [
   },
   {
     key: 'valid',
-    label: 'Valid',
+    label: 'True alarms',
+  },
+  {
+    key: 'reduction',
+    label: 'Reduction',
+  },
+  {
+    key: 'labeledTrue',
+    label: 'Labelled true',
+  },
+  {
+    key: 'labeledFalse',
+    label: 'Labelled false',
   },
 ] as const
 
-export = arrayToCsv(columns)
+const toCsv = arrayToCsv(columns)
+
+export = (data: Item[]) =>
+  toCsv([
+    ...data,
+    getTotal(data),
+  ])
