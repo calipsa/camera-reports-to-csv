@@ -8,7 +8,7 @@
     "test": "echo \"no test\"",
     "lint": "eslint './src/**/*.ts'",
     "build": "rm -rf dist && tsc",
-    "prepublishOnly": "npm run build",
+    "version": "npm run build",
     "release": "np"
   },
   "repository": {
@@ -27,7 +27,7 @@
     "@calipsa/array-to-csv": "^1.1.1"
   },
   "devDependencies": {
-    "@calipsa/eslint-config-typescript": "^1.0.1",
+    "@calipsa/eslint-config-typescript": "^1.1.0",
     "eslint": "^6.5.1",
     "np": "^5.1.1",
     "typescript": "^3.6.4"
