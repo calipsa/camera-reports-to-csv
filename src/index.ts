@@ -66,7 +66,7 @@ const columns = [
   },
   {
     key: 'lastAlarmAt',
-    label: 'Last alarm',
+    label: 'Last alarm (selected time period)',
     transform: formatDate,
   },
   {
